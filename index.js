@@ -1,9 +1,40 @@
-function main(params) {
+const rp = require('request-promise');
+
+exports.main = function (params) {
+    // choose a fortune cookie for this user
     var data = getCookies();
     var random = Math.floor(Math.random() * 430);
     var cookie  = data[random];
-    console.log(cookie);
-    return({"body": cookie});
+    console.log("Fortune: " + cookie);
+
+    // who are we texting? Get phone number
+    // WARNING fails horribly if this data isn't present
+    var query_pieces = params.__ow_query.split('&');
+    var query_data = [];
+    query_pieces.forEach(function(item) {
+        item_pieces = item.split('=');
+        query_data[item_pieces[0]] = item_pieces[1];
+    });
+    console.log("Destination: " + query_data['msisdn']);
+
+    // text the cookie to the user who texted us
+    var options = {
+        method: 'POST',
+        uri: "https://rest.nexmo.com/sms/json",
+        body: {
+            from: "SMS Fortunes Demo",
+            text: cookie,
+            to: query_data['msisdn'],
+            api_key: params.apikey,
+            api_secret: params.apisecret
+        },
+        json: true
+    };
+
+    return rp(options).then(function (response) {
+        // response has info from Nexmo SMS service
+        return Promise.resolved({"statusCode": 200, "body": cookie});
+    });
 }
 
 function getCookies() {
