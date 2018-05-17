@@ -4,9 +4,9 @@ A simple serverless app to receive a webhook from [Nexmo's SMS Service](https://
 
 ## Setup
 
-I'll link to the full tutorial when it's finished but here's the TL;DR version for using this project.
+For the full blog post, look here: https://github.com/lornajane/fortunes-by-sms/blob/master/sms-fortunes.md
 
-### 3. Register for an incoming number
+### 1. Register for an incoming number
 
 You'll need this to receive SMS messages - [set up incoming number](https://developer.nexmo.com/account/guides/numbers#rent-virtual-numbers) before you start.
 
