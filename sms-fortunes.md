@@ -1,15 +1,15 @@
 # Reply to an SMS with a Fortune Cookie
 
-Communicating with users via SMS is a great way of interacting with people in an informal way.  Whether you are automating response to your most-asked questions, running competitions, or connecting with your users over something completely different, SMS is a great choice.  In this post, we'll look at a particularly silly example: when we receive an incoming SMS, we'll send a "fortune cookie".  These are the greetings used in the "message of the day" feature on old *nix workstations, think of it as a geekier version of the adorable loading messages you see on Slack.
+Communicating with users via SMS is a great way of interacting with people in an informal way.  Whether you are automating response to your most-asked questions, running a competition, or connecting with your users over something completely different, SMS is a great choice.  In this post, we'll look at a fun and trivial example while we look at the detail of how to achieve these tasks. We'll build a system that responds to an incoming SMS with a "fortune cookie".  These are the greetings used in the "message of the day" feature on old *nix workstations, think of it as a geekier version of the adorable loading messages you see on Slack.
 
-In this example, a serverless function is used to receive the webhook.  Serverless is an ideal choice for a task like this where each incoming message is independent of all the others.  Serverless platforms like IBM Cloud Functions (used in this example), Amazon Lambda or Azure Functions all scale horizontally when under load.  The big benefit is in the pricing model; you are only charged while your function is running so there is no need to pay a steady fee for a running server.  As an extra bonus, there are fewer steps involved to deploy a function than to set up a server, making it quicker to get started.
+To implement this feature, a serverless function is used to receive the webhook.  Serverless is an ideal choice for a task like this where each incoming message is independent of all the others.  Serverless platforms like [IBM Cloud Functions](https://www.ibm.com/cloud/functions) (used in this example), [Amazon Lambda](https://aws.amazon.com/lambda/) or [Azure Functions](https://azure.microsoft.com/en-us/services/functions/) all scale horizontally when under load.  The big benefit is in the pricing model; you are only charged while your function is running so there is no need to pay a steady fee for a running server.  As an extra bonus, there are fewer steps involved to deploy a function than to set up a server, making it quicker to get started.
 
 ## Before you begin
 
 There are some pre-requisites that should be in place before you follow this tutorial:
 
 * An [incoming number](https://dashboard.nexmo.com/your-numbers) to receive SMS on
-* An [IBM Cloud account](https://www.ibm.com/cloud/) (it's free)
+* An [IBM Cloud account](https://www.ibm.com/cloud/) so we can deploy our serverless function (it's free)
 * The `bx` command line tool for IBM Cloud and `wsk` Cloud Functions plugin - use the [setup instructions](https://console.bluemix.net/openwhisk/learn/cli).  Log in and set your [target workspace](https://console.bluemix.net/docs/cli/reference/bluemix_cli/bx_cli.html#bluemix_target) before you move on.
 
 ## Step 1: Create and deploy a serverless function
