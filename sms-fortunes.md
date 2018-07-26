@@ -6,7 +6,7 @@ To implement this feature, a serverless function is used to receive the webhook.
 
 ## Before you begin
 
-There are some pre-requisites that should be in place before you follow this tutorial:
+There are some pre-requisites that you will need before you follow this tutorial:
 
 * An [incoming number](https://dashboard.nexmo.com/your-numbers) to receive SMS on
 * An [IBM Cloud account](https://www.ibm.com/cloud/) so we can deploy our serverless function (it's free)
@@ -256,5 +256,5 @@ If this has piqued your interest in doing more with SMS, here are some ideas for
 
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMTA3ODM0OTg3MV19
+eyJoaXN0b3J5IjpbLTQ3MTM1OTU2Nl19
 -->
