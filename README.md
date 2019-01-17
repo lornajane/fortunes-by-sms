@@ -4,7 +4,7 @@ A simple serverless app to receive a webhook from [Nexmo's SMS Service](https://
 
 ## Setup
 
-For the full blog post, look here: https://github.com/lornajane/fortunes-by-sms/blob/master/sms-fortunes.md
+For the full blog post, look here: https://www.nexmo.com/blog/2018/08/14/serverless-sms-nexmo-ibm-dr/
 
 ### 1. Register for an incoming number
 
