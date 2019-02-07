@@ -12,28 +12,35 @@ You'll need this to receive SMS messages - [set up incoming number](https://deve
 
 ### 2. Set up environment variables
 
-Set the variables **NEXMO_API_KEY** and **NEXMO_API_SECRET** to the relevant values for your system.
+Set the variables **NEXMO_API_KEY** and **NEXMO_API_SECRET** to the relevant values for your account. Also set **NEXMO_NUMBER** to the number you bought in step 1 (we'll use it as the from number).
 
 ### 3. Deploy the serverless function
 
-There's one I made earlier (look in `index.js`).  Deploy it like this:
+Before deploying a function for the first time, create the package:
 
 ```
-bx wsk package update sms-fortune -p apikey $NEXMO_API_KEY -p apisecret $NEXMO_API_SECRET
-
-zip -rq sms-fortune.zip index.js node_modules
-bx wsk action update sms-fortune/incoming --kind nodejs:8 --web raw sms-fortune.zip
+ibmcloud fn package update sms-fortune -p apikey $NEXMO_API_KEY -p apisecret $NEXMO_API_SECRET -p nexmonumber $NEXMO_NUMBER
 ```
+
+Each language has a `deploy.sh` file in its folder, run this script (I mean, read the script so you know what's happening: it zips all the dependencies and deploys the result)
 
 ### 4. Set up the webhook for incoming SMS
 
 First we need to ask the serverless function what URL it has:
 
 ```
-bx wsk action get --url sms-fortune/incoming
+ibmcloud fn action get --url sms-fortune/incoming-php
 ```
 
 Now paste that into the [settings screen on your Nexmo dashboard](https://dashboard.nexmo.com/settings).
+
+**OR**
+
+Configure from the command line instead:
+
+```
+nexmo link:sms [number] [url]
+```
 
 ### 5. Send yourself a text
 
