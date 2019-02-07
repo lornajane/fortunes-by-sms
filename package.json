@@ -2,7 +2,7 @@
     "name": "sms-fortunes",
     "description": "Simple demo for getting a fortune cookie by SMS",
     "dependencies": {
-        "request": "^2.85.0",
+        "request": "^2.87.0",
         "request-promise": "^4.2.2"
     }
 }
